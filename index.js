@@ -118,15 +118,14 @@ window.addEventListener('DOMContentLoaded', async () => {
         const txtBlock = this.parentElement;
         const index = txtBlock.id;
         const div = document.getElementById(index);
-        /* const span = document.getElementById ("txt"); */
+        const lastTxt = txtBlock.textContent;
+    
         const textForEdit = document.createElement("input");
         textForEdit.id = "edtFld";
         textForEdit.value = txtBlock.textContent; //присваиваем уже существующий текст
         let thisElement = todoElements[index];
         txtBlock.textContent = '';
         txtBlock.appendChild(textForEdit);
-        /* div.appendChild(span); */
-        // headElement.appendChild(div);
 
 
         let colorClass = txtBlock.className.slice(7);
@@ -138,8 +137,10 @@ window.addEventListener('DOMContentLoaded', async () => {
                 
                 if (textForEdit.value.trim()){
                     todoElements.splice(index, 1, { text: textForEdit.value, color: colorClass });
+                } else {
+                    todoElements.splice(index, 1, { text: lastTxt, color: colorClass });
+                }
                 render();
-                };
 
             };
         });
