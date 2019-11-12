@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', async () => {
     let todoElements = [];
+    localStorage.setItem("todo", JSON.stringify(todoElements)); //изменения
     const headElement = document.getElementById("lkio");
     const btnAdd = document.getElementById('btnAdd');
     const inputField = document.getElementById("fld1");
