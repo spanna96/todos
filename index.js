@@ -1,7 +1,6 @@
 window.addEventListener('DOMContentLoaded', async () => {
     let todoElements = [];
-    localStorage.setItem("todo", JSON.stringify(todoElements)); //изменения
-    const headElement = document.getElementById("lkio");
+    localStorage.setItem("todo", JSON.stringify(todoElements)); //запись массива
     const btnAdd = document.getElementById('btnAdd');
     const inputField = document.getElementById("fld1");
     const nodes = headElement.children;
@@ -17,6 +16,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         if (inputField.value.trim()) //проверка содержания строки без пробелов
             todoElements.push({ text: inputField.value, color: 'Color' + c });
         render();
+        localStorage.setItem("todo", JSON.stringify(todoElements));
     };
 
 
@@ -55,6 +55,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
         todoElements.forEach((e, i) => {
             const div = document.createElement("div");
+            const headElement = document.getElementById("lkio");
             const checkBox = document.createElement("input");
             const textField = document.createElement("span");
             const delBtn = document.createElement("input");
