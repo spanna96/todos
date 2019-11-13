@@ -1,9 +1,13 @@
+const localData = JSON.parse(localStorage.getItem('todo'));
+let todoElements = localData || [];
+
 window.addEventListener('DOMContentLoaded', async () => {
-    let todoElements = [];
-    localStorage.setItem("todo", JSON.stringify(todoElements)); //запись массива
+    
+    const headElement = document.getElementById("lkio");
     const btnAdd = document.getElementById('btnAdd');
     const inputField = document.getElementById("fld1");
     const nodes = headElement.children;
+    render();
 
     const btnSetColor1 = document.getElementById('btnColor1');
     const btnSetColor2 = document.getElementById('btnColor2');
@@ -43,6 +47,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             if (inputField.value.trim()) //проверка содержания строки без пробелов
             todoElements.push({ text: inputField.value, color: 'Color' + c });
              render();
+             localStorage.setItem("todo", JSON.stringify(todoElements));
         };
     });//добавить нажатием Enter
 
@@ -99,6 +104,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     function clickToDelete() {
         const index = this.parentElement.id;
         todoElements.splice(index, 1);
+        localStorage.setItem("todo", JSON.stringify(todoElements));
         render()
 
     };//функция удаления данных
@@ -109,6 +115,7 @@ window.addEventListener('DOMContentLoaded', async () => {
         for (let i = 0; i < nodes.length; i++) {
             if (nodes[i].firstChild.checked) todoElements[i].color = color;
         }
+        localStorage.setItem("todo", JSON.stringify(todoElements));
         render();
     };//функция изменения цвета
 
@@ -142,6 +149,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                 } else {
                     todoElements.splice(index, 1, { text: lastTxt, color: colorClass });
                 }
+                localStorage.setItem("todo", JSON.stringify(todoElements));
                 render();
 
             };
